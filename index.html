@@ -16,6 +16,39 @@
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
 
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 500px;
+      width: 100%;
+    }
+  </style>
+
+  <!-- ArcGIS JS-->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.15/"></script>
+  
+  <script>  
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+    ], function(Map, MapView) {
+
+      var map = new Map({
+        basemap: "topo-vector"
+      });
+
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-84, 10],
+        zoom: 8
+      });
+
+    });
+  </script>
+
 </head>
 
 <body>
@@ -70,9 +103,8 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Simple Sidebar</h1>
-        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+        <h1 class="mt-4">Simple</h1>
+        <div id="viewDiv"></div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
