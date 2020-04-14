@@ -24,6 +24,8 @@
       width: 100%;
     }
   </style>
+  <!-- JQUERY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <!-- ArcGIS JS-->
   <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
@@ -67,36 +69,36 @@
         <form class="list-group-item  bg-light">
           <p>Coffee Regions</p>
           <div class="form-check">
-            <input type="checkbox" name="regions" onClick="toggle(this)" class="form-check-input" id="allregions"
+            <input type="checkbox" name="regions" class="form-check-input" id="allregions"
               checked>
             <label class="form-check-label" for="allregions">All regions</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" name="regions" class="form-check-input" id="vallecentral">
+            <input type="checkbox" name="regions" class="form-check-input" id="vallecentral" checked>
             <label class="form-check-label" for="vallecentral">Valle Central</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" name="regions" class="form-check-input" id="valleoccidental">
+            <input type="checkbox" name="regions" class="form-check-input" id="valleoccidental" checked>
             <label class="form-check-label" for="valleoccidental">Valle Occidental</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" name="regions" class="form-check-input" id="lossantons">
+            <input type="checkbox" name="regions" class="form-check-input" id="lossantons" checked>
             <label class="form-check-label" for="lossantons">Los Santos</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" name="regions" class="form-check-input" id="cotobrus">
+            <input type="checkbox" name="regions" class="form-check-input" id="cotobrus" checked>
             <label class="form-check-label" for="cotobrus">Coto Brus</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" name="regions" class="form-check-input" id="turrialba">
+            <input type="checkbox" name="regions" class="form-check-input" id="turrialba" checked>
             <label class="form-check-label" for="turrialba">Turrialba</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" name="regions" class="form-check-input" id="perezzeledon">
+            <input type="checkbox" name="regions" class="form-check-input" id="perezzeledon" checked>
             <label class="form-check-label" for="perezzeledon">Pérez Zeledón</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" name="regions" class="form-check-input" id="zonanorte">
+            <input type="checkbox" name="regions" class="form-check-input" id="zonanorte" checked>
             <label class="form-check-label" for="zonanorte">Zona Norte</label>
           </div>
           <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
@@ -104,59 +106,47 @@
         <form class="list-group-item  bg-light">
           <p>Coffee processes</p>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="allprocesses" checked>
+            <input type="checkbox" name="process" class="form-check-input" id="allprocesses" checked>
             <label class="form-check-label" for="allprocesses">All processes</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="vallecentral">
+            <input type="checkbox" name="process" class="form-check-input" id="vallecentral" checked>
             <label class="form-check-label" for="vallecentral">Process 1</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="valleoccidental">
+            <input type="checkbox" name="process" class="form-check-input" id="valleoccidental" checked>
             <label class="form-check-label" for="valleoccidental">Process 2</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="lossantons">
+            <input type="checkbox" name="process" class="form-check-input" id="lossantons" checked>
             <label class="form-check-label" for="lossantons">Process 3</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="cotobrus">
-            <label class="form-check-label" for="cotobrus">Process 4</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="turrialba">
-            <label class="form-check-label" for="turrialba">Process 5</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="zonanorte">
-            <label class="form-check-label" for="zonanorte">Process 6</label>
           </div>
           <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
         </form>
         <form class="list-group-item  bg-light">
           <p>Mill size (fanegas)</p>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="allsizes" checked>
+            <input type="checkbox" name="millsize" class="form-check-input" id="allsizes" checked>
             <label class="form-check-label" for="allsizes">All sizes</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="size1">
+            <input type="checkbox" name="millsize" class="form-check-input" id="size1" checked>
             <label class="form-check-label" for="size1">0 - 1000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="size2">
+            <input type="checkbox" name="millsize" class="form-check-input" id="size2" checked>
             <label class="form-check-label" for="size2">1000 - 6000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="lossantons">
+            <input type="checkbox" name="millsize" class="form-check-input" id="lossantons" checked>
             <label class="form-check-label" for="lossantons">6000 - 30000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="cotobrus">
+            <input type="checkbox" name="millsize" class="form-check-input" id="cotobrus" checked>
             <label class="form-check-label" for="cotobrus">30000 - 70000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="turrialba">
+            <input type="checkbox" name="millsize" class="form-check-input" id="turrialba" checked>
             <label class="form-check-label" for="turrialba">70000 - More</label>
           </div>
           <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
@@ -228,5 +218,38 @@
   </script>
 
 </body>
+<script>
+  //select all for all regions
+  $("#allregions").click(function () {
+    $("input[name=regions]").prop("checked", $(this).prop("checked"));
+  });
 
+  $("input[name=regions]").click(function () {
+    if (!$(this).prop("checked")) {
+      $("#allregions").prop("checked", false);
+    }
+  });
+
+  //select all for all processes
+  $("#allprocesses").click(function () {
+    $("input[name=process]").prop("checked", $(this).prop("checked"));
+  });
+
+  $("input[name=process]").click(function () {
+    if (!$(this).prop("checked")) {
+      $("#allprocesses").prop("checked", false);
+    }
+  });
+
+  //select all for all processes
+  $("#allsizes").click(function () {
+    $("input[name=millsize]").prop("checked", $(this).prop("checked"));
+  });
+
+  $("input[name=millsize]").click(function () {
+    if (!$(this).prop("checked")) {
+      $("#allsizes").prop("checked", false);
+    }
+  });
+</script>
 </html>
