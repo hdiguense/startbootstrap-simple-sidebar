@@ -35,7 +35,8 @@
     require([
       "esri/Map",
       "esri/views/MapView",
-    ], function (Map, MapView) {
+      "esri/layers/MapImageLayer"
+    ], function (Map, MapView, MapImageLayer) {
 
       var map = new Map({
         basemap: "dark-gray"
@@ -50,6 +51,17 @@
           components: []
         }
       });
+
+      var featureLayer = new MapImageLayer({
+         url: "https://sig.icafe.cr/server/rest/services/pruebas/Beneficios_promoci%C3%B3n/MapServer/",
+         outFields: ["*"], // Return all fields so it can be queried client-side
+        //  popupTemplate: {  // Enable a popup
+        //    title: "{TRL_NAME}", // Show attribute value
+        //    content: "The trail elevation gain is {ELEV_GAIN} ft."  // Display in pop-up
+        //  }
+       });
+
+       map.add(featureLayer);
 
       view.ui.add("toggle", "top-left");
 
