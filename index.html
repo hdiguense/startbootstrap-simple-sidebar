@@ -115,31 +115,31 @@
         <form id="form_mill" class="list-group-item  bg-light">
           <p>Mill size (fanegas)</p>
           <div class="form-check">
-            <input type="checkbox" name="millsize" class="form-check-input" id="allsizes" checked>
+            <input type="checkbox" class="form-check-input" id="allsizes" checked>
             <label class="form-check-label" for="allsizes">All sizes</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="size1" checked>
+            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="size1" value="(produccion BETWEEN 0 AND 1000)" checked>
             <label class="form-check-label" for="size1">0 - 1000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="size2" checked>
+            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="size2" value="(produccion BETWEEN 1001 AND 6000)" checked>
             <label class="form-check-label" for="size2">1000 - 6000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="lossantons"
+            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="size3" value="(produccion BETWEEN 6001 AND 30000)"
               checked>
-            <label class="form-check-label" for="lossantons">6000 - 30000</label>
+            <label class="form-check-label" for="size3">6000 - 30000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="cotobrus"
+            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input"value="(produccion BETWEEN 30001 AND 70000)" id="size4"
               checked>
-            <label class="form-check-label" for="cotobrus">30000 - 70000</label>
+            <label class="form-check-label" for="size4">30000 - 70000</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="turrialba"
+            <input type="checkbox" class="esri-widget" name="millsize" class="form-check-input" id="size5" value="(produccion > 70000)"
               checked>
-            <label class="form-check-label" for="turrialba">70000 - More</label>
+            <label class="form-check-label" for="size5">70000 - More</label>
           </div>
           <!-- <button type="submit" onclick="get_region(); return false" class="btn btn-primary">Submit</button> -->
         </form>
@@ -285,6 +285,10 @@
     var processes = document.getElementsByName('process');
     var processes_sql = ''
 
+    //millsize
+    var millzise = document.getElementsByName('millsize');
+    var millsize_sql = '';
+
     function get_region() {
 
       //regions
@@ -302,30 +306,45 @@
         if(processes[i].checked === true){
           processes_sql += processes[i].value + ' OR ';
         };
-        console.log(processes_sql);
-      }
+      };
+
+      //MillSize
+      millsize_sql = ''
+      for(i = 0; i < millzise.length; i++){
+        if(millzise[i].checked === true){
+          millsize_sql += millzise[i].value + ' OR ';
+        };
+        
+      };
 
       //update view
-      var expression = regions_sql.substring(0, regions_sql.length - 2) + ') AND (' + processes_sql.substring(0, processes_sql.length - 4) + ')';
+      var expression = regions_sql.substring(0, regions_sql.length - 2) + ') AND (' + processes_sql.substring(0, processes_sql.length - 4) + ') AND (' + millsize_sql.substring(0, millsize_sql.length - 4) + ')';
       view.whenLayerView(featureLayer).then(function (featureLayerView) {
         featureLayerView.filter = {
           where: expression
         };
       });
-      //console.log(expression)
+      console.log(expression)
     };
 
     //regions event listener
     for (i = 0; i < regions.length; ++i) {
       regions[i].addEventListener('change', get_region);
-      console.log(regions[i])
+      // console.log(regions[i])
     };
 
     //processes event listener
     for (i = 0; i < processes.length; ++i) {
       processes[i].addEventListener('change', get_region);
-      console.log(processes[i])
+      // console.log(processes[i])
     };
+
+    //size event listener
+    for (i = 0; i < millzise.length; ++i) {
+      millzise[i].addEventListener('change', get_region);
+      // console.log(millzise[i])
+    };
+
 
     map.add(featureLayer);
 
