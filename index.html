@@ -39,7 +39,7 @@
         <form id="form_regions" class="list-group-item  bg-light">
           <p>Coffee Regions</p>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input esri-widget" id="allregions" value="'Regional Coto Brus', 'Regional Turrialba', 'Regional Pérez Zeledón', 'Regional Zona Norte'" checked>
+            <input type="checkbox" name='regions' class="form-check-input esri-widget" id="allregions" value="'ALL'" checked>
             <label class="form-check-label" for="allregions">All regions</label>
           </div>
           <div class="form-check">
@@ -280,6 +280,7 @@
     //regions
     var regions = document.getElementsByName('regions');
     var regions_sql = 'NOMBRE_REGIONAL IN (';
+    var regions_values = '';
 
     //processes
     var processes = document.getElementsByName('process');
@@ -293,11 +294,12 @@
 
       //regions
       regions_sql = 'NOMBRE_REGIONAL IN (';
+      regions_values = '';
       for (i = 0; i < regions.length; i++) {
 
         if (regions[i].checked === true) {
-          regions_sql += regions[i].value + ', ';
-        }
+          regions_values += regions[i].value + ', ';
+        };
       };
 
       //Processes
@@ -318,7 +320,7 @@
       };
 
       //update view
-      var expression = regions_sql.substring(0, regions_sql.length - 2) + ') AND (' + processes_sql.substring(0, processes_sql.length - 4) + ') AND (' + millsize_sql.substring(0, millsize_sql.length - 4) + ')';
+      var expression = regions_sql + regions_values.substring(0, regions_values.length - 2) + ') AND (' + processes_sql.substring(0, processes_sql.length - 4) + ') AND (' + millsize_sql.substring(0, millsize_sql.length - 4) + ')';
       view.whenLayerView(featureLayer).then(function (featureLayerView) {
         featureLayerView.filter = {
           where: expression
