@@ -320,7 +320,7 @@
       };
 
       //update view
-      var expression = regions_sql + regions_values.substring(0, regions_values.length - 2) + ") AND (" + processes_values +  "procesos LIKE 'dummy') AND (" + millsize_sql.substring(0, millsize_sql.length - 4) + ")";
+      var expression = regions_sql + regions_values.substring(0, regions_values.length - 2) + ") AND (" + processes_values +  "procesos LIKE 'dummy') AND (" + millsize_sql + " produccion = 99999999999999999)";
       view.whenLayerView(featureLayer).then(function (featureLayerView) {
         featureLayerView.filter = {
           where: expression
