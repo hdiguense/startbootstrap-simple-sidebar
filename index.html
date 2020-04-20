@@ -115,7 +115,7 @@
         <form id="form_mill" class="list-group-item  bg-light">
           <p>Mill size (fanegas)</p>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="allsizes" checked>
+            <input type="checkbox" name="millsize"  class="form-check-input" id="allsizes" value="(produccion > 0)" checked>
             <label class="form-check-label" for="allsizes">All sizes</label>
           </div>
           <div class="form-check">
@@ -284,7 +284,6 @@
 
     //processes
     var processes = document.getElementsByName('process');
-    var processes_sql = '';
     var processes_values = '';
 
     //millsize
@@ -304,7 +303,6 @@
       };
 
       //Processes
-      processes_sql = '';
       processes_values = '';
       for(i = 0; i < processes.length; i++){
         if(processes[i].checked === true){
@@ -322,7 +320,7 @@
       };
 
       //update view
-      var expression = regions_sql + regions_values.substring(0, regions_values.length - 2) + ") AND (" + processes_sql + processes_values +  "procesos LIKE '%dummy%') AND (" + millsize_sql.substring(0, millsize_sql.length - 4) + ")";
+      var expression = regions_sql + regions_values.substring(0, regions_values.length - 2) + ") AND (" + processes_values +  "procesos LIKE 'dummy') AND (" + millsize_sql.substring(0, millsize_sql.length - 4) + ")";
       view.whenLayerView(featureLayer).then(function (featureLayerView) {
         featureLayerView.filter = {
           where: expression
