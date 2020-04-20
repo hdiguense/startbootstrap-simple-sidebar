@@ -82,7 +82,7 @@
         <form id="form_process" class="list-group-item  bg-light">
           <p>Coffee processes</p>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="allprocesses" checked>
+            <input type="checkbox" name="process" class="form-check-input" id="allprocesses" value="procesos LIKE 'ALL'" checked>
             <label class="form-check-label" for="allprocesses">All processes</label>
           </div>
           <div class="form-check">
@@ -284,7 +284,8 @@
 
     //processes
     var processes = document.getElementsByName('process');
-    var processes_sql = ''
+    var processes_sql = '';
+    var processes_values = '';
 
     //millsize
     var millzise = document.getElementsByName('millsize');
@@ -303,10 +304,11 @@
       };
 
       //Processes
-      processes_sql = ''
+      processes_sql = '';
+      processes_values = '';
       for(i = 0; i < processes.length; i++){
         if(processes[i].checked === true){
-          processes_sql += processes[i].value + ' OR ';
+          processes_values += processes[i].value + ' OR ';
         };
       };
 
@@ -320,7 +322,7 @@
       };
 
       //update view
-      var expression = regions_sql + regions_values.substring(0, regions_values.length - 2) + ') AND (' + processes_sql.substring(0, processes_sql.length - 4) + ') AND (' + millsize_sql.substring(0, millsize_sql.length - 4) + ')';
+      var expression = regions_sql + regions_values.substring(0, regions_values.length - 2) + ") AND (" + processes_sql + processes_values +  "procesos LIKE '%dummy%') AND (" + millsize_sql.substring(0, millsize_sql.length - 4) + ")";
       view.whenLayerView(featureLayer).then(function (featureLayerView) {
         featureLayerView.filter = {
           where: expression
