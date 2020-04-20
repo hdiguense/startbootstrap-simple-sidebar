@@ -272,10 +272,10 @@
     var featureLayer = new FeatureLayer({
       url: "https://sig.icafe.cr/server/rest/services/Hosted/Beneficios_promcion_features/FeatureServer/",
       outFields: ["*"], // Return all fields so it can be queried client-side
-      //  popupTemplate: {  // Enable a popup
-      //    title: "{TRL_NAME}", // Show attribute value
-      //    content: "The trail elevation gain is {ELEV_GAIN} ft."  // Display in pop-up
-      //  }
+       popupTemplate: {  // Enable a popup
+         title: "{RAZON_SOCIAL}", // Show attribute value
+         content: '<img src={URL} alt="view" style="width:40%;"> {HISTORIA}' ,  // Display in pop-up
+       }
     });
     //regions
     var regions = document.getElementsByName('regions');
