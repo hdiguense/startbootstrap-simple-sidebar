@@ -86,24 +86,29 @@
             <label class="form-check-label" for="allprocesses">All processes</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="vallecentral"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="lavado" value=""
               checked>
-            <label class="form-check-label" for="vallecentral">Lavado</label>
+            <label class="form-check-label" for="lavado">Lavado</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="valleoccidental"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="honey"
               checked>
-            <label class="form-check-label" for="valleoccidental">Honey</label>
+            <label class="form-check-label" for="honey">Honey</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="lossantons"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="anaerobic"
               checked>
-            <label class="form-check-label" for="lossantons">Anaerobic</label>
+            <label class="form-check-label" for="anaerobic">Anaerobic</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="lossantons"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="natual"
               checked>
-            <label class="form-check-label" for="lossantons">Natural</label>
+            <label class="form-check-label" for="natural">Natural</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="other"
+              checked>
+            <label class="form-check-label" for="other">Other</label>
           </div>
           <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
         </form>
@@ -276,7 +281,13 @@
     var regions = document.getElementsByName('regions');
     var regions_sql = 'NOMBRE_REGIONAL IN (';
 
+    //processes
+    var processes = document.getElementsByName('process');
+    var processes_sql = ''
+
     function get_region() {
+
+      //regions
       regions_sql = 'NOMBRE_REGIONAL IN (';
       for (i = 0; i < regions.length; i++) {
 
@@ -284,17 +295,36 @@
           regions_sql += regions[i].value + ', ';
         }
       };
+
+      //Processes
+      processes_sql = ''
+      for(i = 0; i < processes.length; i++){
+        if(processes[i].checked === true){
+          processes_sql += processes[i].value + ',';
+        };
+        console.log(processes_sql);
+      }
+
+      //update view
+      var expression = regions_sql.substring(0, regions_sql.length - 2) + ')';
       view.whenLayerView(featureLayer).then(function (featureLayerView) {
         featureLayerView.filter = {
-          where: regions_sql.substring(0, regions_sql.length - 2) + ')'
+          where: expression
         };
       });
-      console.log(regions_sql.substring(0, regions_sql.length - 2) + ')')
+      //console.log(expression)
     };
 
+    //regions event listener
     for (i = 0; i < regions.length; ++i) {
       regions[i].addEventListener('change', get_region);
       console.log(regions[i])
+    };
+
+    //processes event listener
+    for (i = 0; i < processes.length; ++i) {
+      processes[i].addEventListener('change', get_region);
+      console.log(processes[i])
     };
 
     map.add(featureLayer);
