@@ -82,31 +82,31 @@
         <form id="form_process" class="list-group-item  bg-light">
           <p>Coffee processes</p>
           <div class="form-check">
-            <input type="checkbox" name="process" class="form-check-input" id="allprocesses" checked>
+            <input type="checkbox" class="form-check-input" id="allprocesses" checked>
             <label class="form-check-label" for="allprocesses">All processes</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="lavado" value=""
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="lavado" value="procesos LIKE '%Lavado%'"
               checked>
             <label class="form-check-label" for="lavado">Lavado</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="honey"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="honey" value="procesos LIKE '%Honey%'"
               checked>
             <label class="form-check-label" for="honey">Honey</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="anaerobic"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="anaerobic" value="procesos LIKE '%Anaeróbico%'"
               checked>
             <label class="form-check-label" for="anaerobic">Anaerobic</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="natual"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="natual" value="procesos LIKE '%Natural%'"
               checked>
             <label class="form-check-label" for="natural">Natural</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="other"
+            <input type="checkbox" class="esri-widget" name="process" class="form-check-input" id="other" value="procesos LIKE '%Otro%'"
               checked>
             <label class="form-check-label" for="other">Other</label>
           </div>
@@ -300,13 +300,13 @@
       processes_sql = ''
       for(i = 0; i < processes.length; i++){
         if(processes[i].checked === true){
-          processes_sql += processes[i].value + ',';
+          processes_sql += processes[i].value + ' OR ';
         };
         console.log(processes_sql);
       }
 
       //update view
-      var expression = regions_sql.substring(0, regions_sql.length - 2) + ')';
+      var expression = regions_sql.substring(0, regions_sql.length - 2) + ') AND (' + processes_sql.substring(0, processes_sql.length - 4) + ')';
       view.whenLayerView(featureLayer).then(function (featureLayerView) {
         featureLayerView.filter = {
           where: expression
