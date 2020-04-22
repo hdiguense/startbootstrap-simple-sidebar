@@ -273,8 +273,8 @@
       url: "https://sig.icafe.cr/server/rest/services/Hosted/Beneficios_promcion_features/FeatureServer/",
       outFields: ["*"], // Return all fields so it can be queried client-side
        popupTemplate: {  // Enable a popup
-         title: "{RAZON_SOCIAL}", // Show attribute value
-         content: '<img src={URL} alt="view" style="width:40%;"> {HISTORIA}' ,  // Display in pop-up
+         title: '<div style="font-family: Avenir_Heavy"><b>{RAZON_SOCIAL}</b></div>', // Show attribute value
+         content: '<div style="font-family: AvenirBook"><img src={URL} alt="view" style="width:40%;"> {HISTORIA}</div>' ,  // Display in pop-up
        }
     });
     //regions
