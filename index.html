@@ -291,13 +291,41 @@
         components: []
       }
     });
+    function createFillSymbol(value, link) {
+      return {
+        value: value,
+        symbol: {
+          type: "picture-marker",
+          url: link,
+          width: "30px",
+          height: "40px"
+        },
+        label: value
+      };
+    };
+
+    var renderer = {
+      type: "unique-value",
+      field: "REGION_PROMOCIONAL",
+      uniqueValueInfos: [
+        createFillSymbol("Brunca", "https://sig.icafe.cr/coffeemills/icons/brunca.svg"),
+        createFillSymbol("Valle Central", "https://sig.icafe.cr/coffeemills/icons/CENTRAL VALLEY.svg"),
+        createFillSymbol("Guanacaste", "https://sig.icafe.cr/coffeemills/icons/GUANCASTE.svg"),
+        createFillSymbol("Orosí", "https://sig.icafe.cr/coffeemills/icons/OROSI.svg"),
+        createFillSymbol("Tarrazú", "https://sig.icafe.cr/coffeemills/icons/TARRAZU.svg"),
+        createFillSymbol("Tres Ríos", "https://sig.icafe.cr/coffeemills/icons/TRES RIOS.svg"),
+        createFillSymbol("Turrialba", "https://sig.icafe.cr/coffeemills/icons/TURRIALBA.svg"),
+        createFillSymbol("Valle Occidental", "https://sig.icafe.cr/coffeemills/icons/WEST VALLEY.svg")
+      ]
+    };
 
     var featureLayer = new FeatureLayer({
       url: "https://sig.icafe.cr/server/rest/services/Hosted/Beneficios_CRCAFE/FeatureServer/",
       outFields: ["*"], // Return all fields so it can be queried client-side
+      renderer: renderer,
       popupTemplate: {  // Enable a popup
         title: '<div style="font-family: Avenir_Heavy"><b>{RAZON_SOCIAL}</b></div>', // Show attribute value
-        content: '<div style="font-family: AvenirBook"><img src={URL} alt="view" style="width:40%;"> {HISTORIA}</div>',  // Display in pop-up
+        content: '<div style="font-family: AvenirBook"><a href="mailto:{contacto}">{contacto}</a></br></div><div style="font-family: AvenirBook"><img src={URL} alt="view" style="width:40%;"> {HISTORIA}</div>',  // Display in pop-up
       }
     });
     //regions
