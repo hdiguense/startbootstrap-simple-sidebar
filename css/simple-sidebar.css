@@ -3,10 +3,14 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
+ @font-face {
+  font-family: "Avenir Book";
+  src: url("/css/fonts/AvenirLTStd-Book.otf") format("opentype")
+}
 body {
   overflow-x: hidden;
+  font-family: "Avenir Book";
 }
-
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
