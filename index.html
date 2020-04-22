@@ -43,39 +43,44 @@
             <label class="form-check-label" for="allregions">All regions</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="vallecentral"
-              value="'Regional Valle Central'" checked>
-            <label class="form-check-label" for="vallecentral">Valle Central</label>
+            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="brunca"
+              value="'Brunca'" checked>
+            <label class="form-check-label" for="brunca">Brunca</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="valleoccidental"
-              value="'Regional Valle Occidental'" checked>
-            <label class="form-check-label" for="valleoccidental">Valle Occidental</label>
+            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="central_valley"
+              value="'Valle Central'" checked>
+            <label class="form-check-label" for="central_valley">Central Valley</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="lossantons"
-              value="'Regional Los Santos'" checked>
-            <label class="form-check-label" for="lossantons">Los Santos</label>
+            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="guanacaste"
+              value="'Guanacaste'" checked>
+            <label class="form-check-label" for="guanacaste">Guanacaste</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="cotobrus"
-              value="'Regional Coto Brus'" checked>
-            <label class="form-check-label" for="cotobrus">Coto Brus</label>
+            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="orosi"
+              value="'Orosi'" checked>
+            <label class="form-check-label" for="orosi">Orosí</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="tarrazu"
+              value="'Tarrazú'" checked>
+            <label class="form-check-label" for="tarrazu">Tarrazú</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="3rios"
+              value="'Tres Ríos'" checked>
+            <label class="form-check-label" for="3rios">Tres Ríos</label>
           </div>
           <div class="form-check">
             <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="turrialba"
-              value="'Regional Turrialba'" checked>
+              value="'Turrialba'" checked>
             <label class="form-check-label" for="turrialba">Turrialba</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="perezzeledon"
-              value="'Regional Pérez Zeledón'" checked>
-            <label class="form-check-label" for="perezzeledon">Pérez Zeledón</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="zonanorte"
-              value="'Regional Zona Norte'" checked>
-            <label class="form-check-label" for="zonanorte">Zona Norte</label>
+            <input type="checkbox" class=" esri-widget" name="regions" class="form-check-input" id="west_valley"
+              value="'Valle Occidental'" checked>
+            <label class="form-check-label" for="west_valley">West Valley</label>
           </div>
           <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
         </form>
@@ -270,7 +275,7 @@
     });
 
     var featureLayer = new FeatureLayer({
-      url: "https://sig.icafe.cr/server/rest/services/Hosted/Beneficios_promcion_features/FeatureServer/",
+      url: "https://sig.icafe.cr/server/rest/services/Hosted/Beneficios_CRCAFE/FeatureServer/",
       outFields: ["*"], // Return all fields so it can be queried client-side
        popupTemplate: {  // Enable a popup
          title: '<div style="font-family: Avenir_Heavy"><b>{RAZON_SOCIAL}</b></div>', // Show attribute value
@@ -279,7 +284,7 @@
     });
     //regions
     var regions = document.getElementsByName('regions');
-    var regions_sql = 'NOMBRE_REGIONAL IN (';
+    var regions_sql = 'REGION_PROMOCIONAL IN (';
     var regions_values = '';
 
     //processes
@@ -293,7 +298,7 @@
     function get_region() {
 
       //regions
-      regions_sql = 'NOMBRE_REGIONAL IN (';
+      regions_sql = 'REGION_PROMOCIONAL IN (';
       regions_values = '';
       for (i = 0; i < regions.length; i++) {
 
