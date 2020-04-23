@@ -279,7 +279,7 @@
     });
 
     var map = new Map({
-      basemap: basemap
+      basemap: "gray"
     });
 
     var view = new MapView({
@@ -403,7 +403,7 @@
 
     var basemapToggle = new BasemapToggle({
       view: view,
-      nextBasemap: "satellite"
+      nextBasemap: "hybrid"
     });
 
     view.ui.add(basemapToggle, "top-right");
