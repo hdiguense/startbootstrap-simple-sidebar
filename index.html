@@ -264,20 +264,20 @@
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
     "esri/Basemap",
-    "esri/layers/VectorTileLayer",
+    // "esri/layers/VectorTileLayer", //remember add to function if needed
     "esri/widgets/BasemapToggle"
-  ], function (Map, MapView, FeatureLayer, Basemap, VectorTileLayer, BasemapToggle) {
+  ], function (Map, MapView, FeatureLayer, Basemap, BasemapToggle) {
 
-    var basemap = new Basemap({
-      baseLayers: [
-        new VectorTileLayer({
-          portalItem: {
-            id: "7675d44bb1e4428aa2c30a9b68f97822" // Mid-Century
-          }
-        })
-      ]
-    });
-
+    // var basemap = new Basemap({
+    //   baseLayers: [
+    //     new VectorTileLayer({
+    //       portalItem: {
+    //         id: "7675d44bb1e4428aa2c30a9b68f97822" // Mid-Century
+    //       }
+    //     })
+    //   ]
+    // });
+    
     var map = new Map({
       basemap: "gray"
     });
@@ -291,6 +291,18 @@
         components: []
       }
     });
+
+    var promotional_regions = new FeatureLayer({
+      url: "https://sig.icafe.cr/server/rest/services/Hosted/Regiones_cafetaleras_de_promoci%C3%B3n/FeatureServer/",
+      outFields: ["*"],
+      popupTemplate: {
+        title: '{Region}',
+        content: '<iframe width="560" height="315" src="https://www.youtube.com/embed/iinJxVVZ1QY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+      }
+    });
+
+    map.add(promotional_regions, 0);
+
     function createFillSymbol(value, link) {
       return {
         value: value,
@@ -328,6 +340,7 @@
         content: '<div style="font-family: AvenirBook"><a href="mailto:{contacto}">{contacto}</a></br></div><div style="font-family: AvenirBook"><img src={URL} alt="view" style="width:40%;"> {HISTORIA}</div>',  // Display in pop-up
       }
     });
+
     //regions
     var regions = document.getElementsByName('regions');
     var regions_sql = 'REGION_PROMOCIONAL IN (';
@@ -398,7 +411,7 @@
       // console.log(millzise[i])
     };
 
-
+    
     map.add(featureLayer);
 
     var basemapToggle = new BasemapToggle({
